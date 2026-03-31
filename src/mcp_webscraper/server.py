@@ -41,6 +41,8 @@ from mcp_webscraper.tools.news import fetch_news as _fetch_news
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("mcp-webscraper")
 
+import os as _os
+
 mcp = FastMCP(
     "WebScraper",
     instructions=(
@@ -48,6 +50,8 @@ mcp = FastMCP(
         "Fetch pages, extract text/tables/links/metadata, take screenshots, "
         "crawl sites, and search Google — all via MCP tools."
     ),
+    host=_os.getenv("MCP_HOST", "0.0.0.0"),
+    port=int(_os.getenv("MCP_PORT", "8000")),
 )
 
 
@@ -587,7 +591,7 @@ def main():
 
     if transport == "sse":
         logger.info(f"Starting MCP WebScraper server (SSE) on http://{host}:{port}")
-        mcp.run(transport="sse", host=host, port=port)
+        mcp.run(transport="sse")
     else:
         logger.info("Starting MCP WebScraper server (stdio)")
         mcp.run(transport="stdio")
