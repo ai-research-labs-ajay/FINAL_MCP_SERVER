@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "webscraper-local": {
+      "command": "C:\\Users\\Deepan\\Desktop\\MCP_WebScraper\\.venv\\Scripts\\python.exe",
+      "args": ["-m", "mcp_webscraper.server"],
+      "env": {
+        "PYTHONPATH": "C:\\Users\\Deepan\\Desktop\\MCP_WebScraper\\src"
+      }
+    }
+  }
+}

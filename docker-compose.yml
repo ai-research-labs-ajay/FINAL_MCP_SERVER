@@ -1,0 +1,29 @@
+# ============================================================
+#  MCP WebScraper - Docker Compose
+#  Run: docker compose up -d
+#  Then connect any MCP client to http://localhost:8000/sse
+# ============================================================
+
+services:
+  webscraper:
+    build: .
+    container_name: mcp-webscraper
+    ports:
+      - "${MCP_PORT:-8000}:8000"
+    environment:
+      - MCP_TRANSPORT=sse
+      - MCP_HOST=0.0.0.0
+      - MCP_PORT=8000
+    restart: unless-stopped
+    # Resource limits (adjust as needed)
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: "2.0"
+    # Optional: persist Playwright browser cache
+    volumes:
+      - playwright-cache:/home/mcpuser/.cache/ms-playwright
+
+volumes:
+  playwright-cache:

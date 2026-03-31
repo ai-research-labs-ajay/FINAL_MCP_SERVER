@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mcp-webscraper"
+version = "1.0.0"
+description = "A full-fledged MCP server for web scraping - fetch pages, extract text, tables, links, metadata, take screenshots, crawl sites, and get 48hr news with impact scoring."
+readme = "DEPLOY.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Gouri" }]
+
+dependencies = [
+    "mcp[cli]>=1.0.0",
+    "httpx>=0.27.0",
+    "beautifulsoup4>=4.12.0",
+    "lxml>=5.0.0",
+    "readability-lxml>=0.8.1",
+    "playwright>=1.40.0",
+    "markdownify>=0.13.0",
+    "pydantic>=2.0.0",
+]
+
+[project.scripts]
+mcp-webscraper = "mcp_webscraper.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mcp_webscraper"]
